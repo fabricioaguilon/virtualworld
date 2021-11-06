@@ -1,0 +1,12 @@
+
+{% extends "home/principal.html" %}
+{% block content %}
+
+<form action= "" method="POST">
+    {% csrf_token %} {{ form.as_p }}
+    <button class="btn" type="submit">Entrar!</button>     
+</form>
+
+Si aun no tienes cuenta, ve a <a href="{% url 'registro'%}">Registro</a>
+
+{% endblock %}

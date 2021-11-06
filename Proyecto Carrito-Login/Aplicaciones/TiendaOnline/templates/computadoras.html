@@ -1,0 +1,476 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>Computadoras</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+
+	<!-- Slick -->
+	<link type="text/css" rel="stylesheet" href="{% static 'css/slick.css' %}" />
+	<link type="text/css" rel="stylesheet" href="{% static 'css/slick-theme.css' %}" />
+
+	<!-- nouislider -->
+	<link type="text/css" rel="stylesheet" href="{% static 'css/nouislider.min.css' %}" />
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+</head>
+
+<body>
+	<!-- HEADER -->
+	<header>
+		<!-- TOP HEADER -->
+		<div id="top-header">
+			<div class="container">
+				<ul class="header-links pull-left">
+					<li><a href="https://wa.link/c3ef6l"><i class="fa fa-phone"></i> +50249640177</a></li>
+					<li><a href="#"><i class="fa fa-envelope-o"></i> virtualworld@gmail.com</a></li>
+					<li><a href="https://www.google.com.gt/maps/@14.9097591,-92.0541214,16.47z?hl=es-419"><i
+								class="fa fa-map-marker"></i> 12015 Malacatán, San Marcos</a></li>
+				</ul>
+				<ul class="header-links pull-right">
+					<li><a href="{% url 'index' %}">Inicio</a></li>
+						{% if user.is_authenticated %}
+						<li><a href="{% url 'pagar' %}">{{user.username}}</a></li>
+						<li><a href="{% url 'logout' %}">Salir</a></li>
+						{% else %}
+						<li><a href="{% url 'registro' %}">Registro</a></li>
+						<li><a href="{% url 'login' %}">Entrar</a></li>
+						{% endif %}
+				</ul>
+			</div>
+		</div>
+		<!-- /TOP HEADER -->
+
+		<!-- MAIN HEADER -->
+		<div id="header">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- LOGO -->
+					<div class="col-md-3">
+						<div class="header-logo">
+							<a href="#" class="logo">
+								<img src="{% static './img/virtual.png' %}" alt="">
+							</a>
+						</div>
+					</div>
+					<!-- /LOGO -->
+
+					<!-- SEARCH BAR -->
+					<div class="col-md-6">
+						<div class="header-search">
+							<form>
+								<select class="input-select">
+									<option value="0">Categorias</option>
+									<option value="1">Category 01</option>
+									<option value="1">Category 02</option>
+								</select>
+								<input class="input" placeholder="Buscar aqui">
+								<button class="search-btn">Buscar</button>
+							</form>
+						</div>
+					</div>
+					<!-- /SEARCH BAR -->
+
+					<!-- ACCOUNT -->
+					<div class="col-md-3 clearfix">
+						<div class="header-ctn">
+
+							<!-- Cart -->
+							<div class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+									<i class="fa fa-shopping-cart"></i>
+									<span>Carrito</span>
+								</a>
+								<div class="cart-dropdown">
+									<div class="cart-list">
+										<div class="product-widget">
+											{% include "Carrito.html" %}
+										</div>
+										
+									</div>									
+									<div class="cart-btns">
+										<a href="{% url 'CLS' %}">Limpiar</a>
+										<a href="{% url 'pagar'%}">Checkout <i class="fa fa-arrow-circle-right"></i></a>
+									</div>
+								</div>
+							</div>
+							<!-- /Cart -->
+
+							<!-- Menu Toogle -->
+							<div class="menu-toggle">
+								<a href="#">
+									<i class="fa fa-bars"></i>
+									<span>Menu</span>
+								</a>
+							</div>
+							<!-- /Menu Toogle -->
+						</div>
+					</div>
+					<!-- /ACCOUNT -->
+				</div>
+				<!-- row -->
+			</div>
+			<!-- container -->
+		</div>
+		<!-- /MAIN HEADER -->
+	</header>
+	<!-- /HEADER -->
+
+	<!-- NAVIGATION -->
+	<nav id="navigation">
+		<!-- container -->
+		<div class="container">
+			<!-- responsive-nav -->
+			<div id="responsive-nav">
+				<!-- NAV -->
+				<ul class="main-nav nav navbar-nav">
+					<li class="active"><a href="{% url 'index'%}">Home</a></li>
+					<li><a href="{% url 'computadoras'%}">Computadoras</a></li>
+					<li><a href="{% url 'accesorios'%}">Accesorios</a></li>
+					<li><a href="{% url 'pagar'%}">Pagar</a></li>
+				</ul>
+				<!-- /NAV -->
+			</div>
+			<!-- /responsive-nav -->
+		</div>
+		<!-- /container -->
+	</nav>
+	<!-- /NAVIGATION -->
+
+	<!-- SECTION -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- ASIDE -->
+				<div id="aside" class="col-md-3">
+					<!-- aside Widget -->
+					<div class="aside">
+						<h3 class="aside-title">Categorias</h3>
+						<div class="checkbox-filter">
+
+							<div class="input-checkbox">
+								<input type="checkbox" id="category-1">
+								<label for="category-1">
+									<span></span>
+									Laptops
+									<small>(10)</small>
+								</label>
+							</div>
+
+							<div class="input-checkbox">
+								<input type="checkbox" id="category-2">
+								<label for="category-2">
+									<span></span>
+									Ordenadores
+									<small>(15)</small>
+								</label>
+							</div>
+
+
+							<div class="input-checkbox">
+								<input type="checkbox" id="category-4">
+								<label for="category-4">
+									<span></span>
+									Full Equipo
+									<small>(5)</small>
+								</label>
+							</div>
+						</div>
+					</div>
+					<!-- /aside Widget -->
+
+					<!-- aside Widget -->
+					<div class="aside">
+						<h3 class="aside-title">Price</h3>
+						<div class="price-filter">
+							<div id="price-slider"></div>
+							<div class="input-number price-min">
+								<input id="price-min" type="number">
+								<span class="qty-up">+</span>
+								<span class="qty-down">-</span>
+							</div>
+							<span>-</span>
+							<div class="input-number price-max">
+								<input id="price-max" type="number">
+								<span class="qty-up">+</span>
+								<span class="qty-down">-</span>
+							</div>
+						</div>
+					</div>
+					<!-- /aside Widget -->
+
+					<!-- aside Widget -->
+					<div class="aside">
+						<h3 class="aside-title">Marcas</h3>
+						<div class="checkbox-filter">
+							<div class="input-checkbox">
+								<input type="checkbox" id="brand-1">
+								<label for="brand-1">
+									<a href=""></a>
+									<span></span>
+									<a href="https://www.samsung.com/latin/">SAMSUNG</a>
+								</label>
+							</div>
+							<div class="input-checkbox">
+								<input type="checkbox" id="brand-1">
+								<label for="brand-1">
+									<a href=""></a>
+									<span></span>
+									<a href="https://www.hp.com/lamerica_nsc_cnt_amer-es/home.html">HP</a>
+								</label>
+							</div>
+							<div class="input-checkbox">
+								<input type="checkbox" id="brand-1">
+								<label for="brand-1">
+									<a href=""></a>
+									<span></span>
+									<a href="https://www.delltechnologies.com/es-ai/business-pcs-laptops/index.htm?gacd=9990597-14021-5761040-309734300-0&dgc=ST&gclsrc=aw.ds&&gclid=CjwKCAjw2bmLBhBREiwAZ6ugo2asbIvKPTTZKhEnaoki7zc4l-iybUeOaAjXwL863-T23YX1UKX6whoCwrAQAvD_BwE">DELL</a>
+								</label>
+							</div>
+						</div>
+					</div>
+					<!-- /aside Widget -->
+				</div>
+				<!-- /ASIDE -->
+
+				<!-- STORE -->
+				<div id="store" class="col-md-9">
+
+					<!-- store products -->
+					<div class="row">
+						<div id="tab1" class="tab-pane active">
+							<!-- product -->
+							{% for producto in productos %}
+							<div class="col-md-4 col-xs-6">
+								
+								<div class="product">
+									<div class="product-img">
+										<img src="{{ producto.foto }}" width="300" height="300">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Category</p>
+										<h3 class="product-name"><a href="#">{{ producto.nombre }}</a></h3>
+										<h3 class="product-name"><a href="#">{{ producto.marca }}</a></h3>
+										<h5 class="product-price">Q. {{ producto.precio }}</h5>
+										<p>{{ producto.descripcion }}</p>
+										<div class="product-rating">
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+										</div>										
+									</div>
+									<div class="add-to-cart">
+										<a href="{% url 'Add' producto.id %}" class="add-to-cart-btn">add to 											
+											cart</a>
+										
+									</div>
+								</div>
+								
+
+							</div>
+							{% endfor %}
+							<!-- /product -->
+							<!--<div class="clearfix visible-lg visible-md visible-sm visible-xs"></div>-->
+							<!--<div class="clearfix visible-sm visible-xs"></div>-->
+							<div class="clearfix visible-lg visible-md"></div>
+						</div>
+						
+					</div>
+					<!-- /store products -->
+
+					<!-- store bottom filter -->
+					<div class="store-filter clearfix">
+						<span class="store-qty">Showing 20-100 products</span>
+						<ul class="store-pagination">
+							<li class="active">1</li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+						</ul>
+					</div>
+					<!-- /store bottom filter -->
+				</div>
+				<!-- /STORE -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /SECTION -->
+
+	<!-- NEWSLETTER -->
+	<div id="newsletter" class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="newsletter">
+						<p>Registrese para obtener mas <strong>INFORMACIÓN</strong></p>
+						<form>
+							<input class="input" type="email" placeholder="Ingrese su Correo">
+							<button class="newsletter-btn"><i class="fa fa-envelope"></i> Registrar</button>
+						</form>
+						<ul class="newsletter-follow">
+							<li>
+								<a href="#"><i class="fa fa-facebook"></i></a>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-twitter"></i></a>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-instagram"></i></a>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-pinterest"></i></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /NEWSLETTER -->
+
+	<!-- FOOTER -->
+	<footer id="footer">
+		<!-- top footer -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-3 col-xs-6">
+						<div class="footer">
+							<h3 class="footer-title">Sobre Nosotros</h3>
+							<p>Somos una empresa nacional, que dia a dia buscamos la satisfaccion de nuestros clientes
+								para que ellos puedan obtener lo que deseen.</p>
+							<ul class="footer-links">
+								<li><a href="https://www.google.com.gt/maps/@14.9097591,-92.0541214,16.47z?hl=es-419"><i
+											class="fa fa-map-marker"></i>12015 Malacatán, San Marcos</a></li>
+								<li><a href="https://wa.link/c3ef6l"><i class="fa fa-phone"></i>+50249640177</a></li>
+								<li><a href="#"><i class="fa fa-envelope-o"></i>virtualworld@gmail.com</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="col-md-3 col-xs-6">
+						<div class="footer">
+							<h3 class="footer-title">Categorias</h3>
+							<ul class="footer-links">
+								<li><a href="#">Ofertas</a></li>
+								<li><a href="#">Laptops</a></li>
+								<li><a href="#">Accessorios</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="clearfix visible-xs"></div>
+
+					<div class="col-md-3 col-xs-6">
+						<div class="footer">
+							<h3 class="footer-title">Información</h3>
+							<ul class="footer-links">
+								<li><a href="#">Sobre Nosotros</a></li>
+								<li><a href="#">Contactanos</a></li>
+								<li><a href="#">Politicas de Privacidad</a></li>
+								<li><a href="#">Pedidos</a></li>
+								<li><a href="#">Terminos & Condiciones</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="col-md-3 col-xs-6">
+						<div class="footer">
+							<h3 class="footer-title">Servicio</h3>
+							<ul class="footer-links">
+								<li><a href="#">Mi Cuenta</a></li>
+								<li><a href="#">Ver Carrito</a></li>
+								<li><a href="#">Lista de Deseos</a></li>
+								<li><a href="#">Ver mi orden</a></li>
+								<li><a href="#">Ayuda</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /top footer -->
+
+		<!-- bottom footer -->
+		<div id="bottom-footer" class="section">
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<ul class="footer-payments">
+							<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
+							<li><a href="#"><i class="fa fa-credit-card"></i></a></li>
+							<li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
+							<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
+							<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
+							<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
+						</ul>
+						<span class="copyright">
+							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							Copyright &copy;
+							<script>document.write(new Date().getFullYear());</script> All rights reserved | This
+							template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a
+								href="https://colorlib.com" target="_blank">Colorlib</a>
+							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						</span>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /bottom footer -->
+	</footer>
+	<!-- /FOOTER -->
+
+	<!-- jQuery Plugins -->
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/slick.min.js' %}"></script>
+	<script src="{% static 'js/nouislider.min.js' %}"></script>
+	<script src="{% static 's/jquery.zoom.min.js' %}"></script>
+	<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

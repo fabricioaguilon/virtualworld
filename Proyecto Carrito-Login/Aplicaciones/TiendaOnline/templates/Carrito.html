@@ -1,0 +1,29 @@
+<div class="order-col">
+    <div><strong>PRODUCT</strong></div>
+    <div><strong>PRECIO</strong></div>
+</div>
+<div class="order-products">   
+    {% if request.session.carrito.items %}
+    {% for key, value in request.session.carrito.items %}
+    <div class="order-col">
+        <div>
+            <a href="{% url 'Add' value.producto_id %}" class="badge btn btn-dark badge-dark">+</a>
+            <a href="{% url 'Sub' value.producto_id %}"	class="badge btn btn-dark badge-dark">-</a>
+            {{value.nombre}}
+        </div>      
+        <div>{{value.acumulado}}</div>
+        
+    </div>
+    {% endfor %}
+    {% else %}
+    <tr>
+        <td colspan="3">
+            <div class="alert alert-danger text-center"> Sin Productos </div>
+        </td>
+    </tr>
+    {% endif %}
+</div>
+<div class="order-col">
+    <div><strong>TOTAL</strong></div>
+    <div><strong class="order-total">{{total_carrito}}</strong></div>
+</div>
